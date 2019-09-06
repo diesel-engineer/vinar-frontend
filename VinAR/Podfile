@@ -1,0 +1,8 @@
+project 'VinAR.xcodeproj'
+platform :ios, '12.0'
+
+target 'VinAR' do
+  use_frameworks!
+  # Pods for PathVisualiser
+  pod 'SnapKit'
+end
