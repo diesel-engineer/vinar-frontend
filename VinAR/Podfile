@@ -4,7 +4,8 @@ platform :ios, '12.0'
 target 'VinAR' do
   use_frameworks!
   # Pods for PathVisualiser
+  pod 'RxSwift'
+  pod 'RxCocoa'
   pod 'SnapKit'
-  pod 'RxSwift', '4.5.0'
-  pod 'RxCocoa', '4.5.0'
+  pod 'NVActivityIndicatorView'
 end
