@@ -95,11 +95,21 @@ class QRViewController: UIViewController {
     
     func found(code: String) {
         //if code.contains("vectary") {
-            let urlString = code
-            
+        let urlString = code
+        
+        let productParam = getQueryStringParameter(url: urlString, param: "producturl")
+        let modelParam = getQueryStringParameter(url: urlString, param: "modelurl")
+        
+        if let productParam = productParam, let modelParam = modelParam {
             let arWebVC = ARViewController()
-            arWebVC.urlString = urlString
+            arWebVC.urlString = "https://makbiz.vn/\(productParam)"
+            arWebVC.arModelString = "https://makbiz.vn/\(modelParam)"
             present(arWebVC, animated: true)
+        } else {
+            if (captureSession?.isRunning == false) {
+                captureSession.startRunning()
+            }
+        }
     }
     
     override var prefersStatusBarHidden: Bool {
@@ -174,4 +184,8 @@ private extension QRViewController {
         }
     }
     
+    func getQueryStringParameter(url: String, param: String) -> String? {
+        guard let url = URLComponents(string: url) else { return nil }
+        return url.queryItems?.first(where: { $0.name == param })?.value
+    }
 }

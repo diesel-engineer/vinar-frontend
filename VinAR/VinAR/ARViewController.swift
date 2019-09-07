@@ -14,8 +14,10 @@ import SafariServices
 class ARViewController: UIViewController, WKUIDelegate {
     
     public var urlString: String? = nil
+    public var arModelString: String? = nil
     
     var webView: WKWebView!
+    var showARFirstTime: Bool = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,8 +35,8 @@ class ARViewController: UIViewController, WKUIDelegate {
         view.addSubview(webView)
         
         if let urlString = self.urlString {
-//            let myURL = URL(string: urlString)
-            let myURL = Bundle.main.url(forResource: "page", withExtension: "html")
+            let myURL = URL(string: urlString)
+//            let myURL = Bundle.main.url(forResource: "page", withExtension: "html")
 
             let myRequest = URLRequest(url: myURL!)
             webView.load(myRequest)
@@ -49,6 +51,22 @@ class ARViewController: UIViewController, WKUIDelegate {
     
     @IBAction func onBackTap(_ sender: Any) {
         dismiss(animated: true, completion: nil)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        if showARFirstTime {
+            showARFirstTime = false
+            if let arModelString = self.arModelString {
+                let sfConfiguration = SFSafariViewController.Configuration()
+                sfConfiguration.barCollapsingEnabled = true
+                sfConfiguration.entersReaderIfAvailable = false
+                if let url = URL(string: arModelString) {
+                    let sfSafariVC = SFSafariViewController(url: url, configuration: sfConfiguration)
+                    present(sfSafariVC, animated: true)
+                }
+            }
+        }
     }
 }
 
@@ -73,7 +91,7 @@ extension ARViewController: WKScriptMessageHandler, WKNavigationDelegate {
                 }
             }
             
-            if let param1 = param1, let param2 = param2, param1.contains("add_to_cart") {
+            if let param1 = param1, param1.contains("add_to_cart") {
                 let paymentVC = CartViewController(nibName: "CartViewController", bundle: nil)
                 self.present(paymentVC, animated: true, completion: nil)
             }

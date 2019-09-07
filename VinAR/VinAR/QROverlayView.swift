@@ -117,5 +117,4 @@ class QROverlayView: UIView {
                                   height: frame.size.height / 2.0)
         return topHalfFrame.union(focusImageView.frame)
     }
-    
 }
