@@ -66,6 +66,9 @@ class QRViewController: UIViewController {
         overlayView.alpha = 0
         UIView.animate(withDuration: 0.2, animations: { self.overlayView.alpha = 1 })
         
+        let value = UIInterfaceOrientation.portrait.rawValue
+        UIDevice.current.setValue(value, forKey: "orientation")
+        
     }
     
     func failed() {
@@ -118,6 +121,10 @@ class QRViewController: UIViewController {
     
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         return .portrait
+    }
+    
+    override var shouldAutorotate: Bool {
+        return true
     }
 }
 

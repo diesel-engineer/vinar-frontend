@@ -15,9 +15,6 @@ class ViewController: UIViewController {
         super.viewDidLoad()
     }
 
-    @IBAction func openQRScanner(_ sender: Any) {
-        
-    }
-    
+    @IBAction func openQRScanner(_ sender: Any) {}
 }
 

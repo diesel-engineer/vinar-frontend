@@ -10,8 +10,9 @@ import Foundation
 import UIKit
 import WebKit
 import SafariServices
+import QuickLook
 
-class ARViewController: UIViewController, WKUIDelegate {
+class ARViewController: UIViewController, WKUIDelegate, QLPreviewControllerDataSource {
     
     public var urlString: String? = nil
     public var arModelString: String? = nil
@@ -36,8 +37,6 @@ class ARViewController: UIViewController, WKUIDelegate {
         
         if let urlString = self.urlString {
             let myURL = URL(string: urlString)
-//            let myURL = Bundle.main.url(forResource: "page", withExtension: "html")
-
             let myRequest = URLRequest(url: myURL!)
             webView.load(myRequest)
         }
@@ -58,14 +57,62 @@ class ARViewController: UIViewController, WKUIDelegate {
         if showARFirstTime {
             showARFirstTime = false
             if let arModelString = self.arModelString {
-                let sfConfiguration = SFSafariViewController.Configuration()
-                sfConfiguration.barCollapsingEnabled = true
-                sfConfiguration.entersReaderIfAvailable = false
                 if let url = URL(string: arModelString) {
-                    let sfSafariVC = SFSafariViewController(url: url, configuration: sfConfiguration)
-                    present(sfSafariVC, animated: true)
+                    showARViewer(itemURL: url)
                 }
             }
+        }
+    }
+    
+    var fileURL: URL?
+
+    func showARViewer(itemURL: URL) {
+        
+        let quickLookController = QLPreviewController()
+        quickLookController.dataSource = self
+        
+        do {
+            self.downloadFile(itemURL: itemURL) { [unowned self] success, destURL in
+                if success {
+                    self.fileURL = destURL
+                    if QLPreviewController.canPreview(self.fileURL! as QLPreviewItem) {
+                        quickLookController.currentPreviewItemIndex = 0
+                        self.present(quickLookController, animated: true, completion: nil)
+                    }
+                }
+            }
+        }
+    }
+    
+    func numberOfPreviewItems(in controller: QLPreviewController) -> Int {
+        return 1
+    }
+    
+    func previewController(_ controller: QLPreviewController, previewItemAt index: Int) -> QLPreviewItem {
+        return fileURL! as QLPreviewItem
+    }
+    
+    func downloadFile(itemURL: URL?, completion: @escaping (_ success: Bool, _ fileLocation: URL?) -> Void) {
+        guard let itemURL = itemURL else {
+            completion(false, nil)
+            return
+        }
+        
+        let docDir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        let destDir = docDir.appendingPathComponent("ar.usdz")
+        
+        if FileManager.default.fileExists(atPath: destDir.path) {
+            completion(true, destDir)
+        } else {
+            URLSession.shared.downloadTask(with: itemURL, completionHandler: { (location, response, error) -> Void in
+                guard let tempLocation = location, error == nil else { return }
+                do {
+                    try FileManager.default.moveItem(at: tempLocation, to: destDir)
+                    completion(true, destDir)
+                } catch {
+                    completion(false, nil)
+                }
+            }).resume()
         }
     }
 }
@@ -73,21 +120,14 @@ class ARViewController: UIViewController, WKUIDelegate {
 extension ARViewController: WKScriptMessageHandler, WKNavigationDelegate {
     
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
-        //This function handles the events coming from javascript. We'll configure the javascript side of this later.
-        //We can access properties through the message body, like this:
-        
         if message.name == "callback" {
             guard let response = message.body as? [String: AnyObject] else { return }
             let param1 = response["param1"] as? String
             let param2 = response["param2"] as? String
             
             if let param1 = param1, let param2 = param2, param1.contains("view_ar") {
-                let sfConfiguration = SFSafariViewController.Configuration()
-                sfConfiguration.barCollapsingEnabled = true
-                sfConfiguration.entersReaderIfAvailable = false
                 if let url = URL(string: param2) {
-                    let sfSafariVC = SFSafariViewController(url: url, configuration: sfConfiguration)
-                    present(sfSafariVC, animated: true)
+                    showARViewer(itemURL: url)
                 }
             }
             
@@ -98,8 +138,5 @@ extension ARViewController: WKScriptMessageHandler, WKNavigationDelegate {
         }
     }
     
-    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        //This function is called when the webview finishes navigating to the webpage.
-        //We use this to send data to the webview when it's loaded.
-    }
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {}
 }
