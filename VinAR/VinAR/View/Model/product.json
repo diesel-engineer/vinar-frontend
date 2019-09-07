@@ -1,0 +1,21 @@
+[
+    {
+        "productName" : "Ghế học sinh",
+        "productImage" : "",
+        "price" : 150000,
+        "amount": 1
+    },
+    
+    {
+        "productName" : "Ghế văn phòng",
+        "productImage" : "",
+        "price" : 550000,
+        "amount": 1
+    },
+    {
+        "productName" : "Cặp sách",
+        "productImage" : "",
+        "price" : 250000,
+        "amount": 1
+    }
+]

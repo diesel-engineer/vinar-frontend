@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ipad_bgr" translatesAutoresizingMaskIntoConstraints="NO" id="T4N-TC-AJc">
-                                <rect key="frame" x="0.0" y="0.0" width="375.00000000000045" height="812"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="omt-dp-bIg">
                                 <rect key="frame" x="137.66666666666666" y="678" width="100" height="100"/>
@@ -59,14 +59,34 @@
                     <view key="view" contentMode="scaleToFill" id="tVn-jz-j1J">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gmf-4N-bqj">
+                                <rect key="frame" x="139.66666666666666" y="713" width="96" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="96" id="0zf-eK-m45"/>
+                                    <constraint firstAttribute="height" constant="35" id="z0h-Oo-q3I"/>
+                                </constraints>
+                                <state key="normal" title="Fake Payment"/>
+                                <connections>
+                                    <action selector="onPaymentTouched:" destination="x08-NS-Gqu" eventType="touchUpInside" id="p6A-jH-Cg0"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Gmf-4N-bqj" firstAttribute="centerX" secondItem="ZlB-P7-itg" secondAttribute="centerX" id="f8X-pe-0V3"/>
+                            <constraint firstItem="ZlB-P7-itg" firstAttribute="bottom" secondItem="Gmf-4N-bqj" secondAttribute="bottom" constant="30" id="ubV-sY-ugR"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="ZlB-P7-itg"/>
                     </view>
                     <navigationItem key="navigationItem" id="DgL-9n-2eu"/>
+                    <connections>
+                        <outlet property="fakePaymentButton" destination="Gmf-4N-bqj" id="x2u-Mp-pWf"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Eh6-Q5-4LZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1117" y="23"/>
+            <point key="canvasLocation" x="1116" y="22.906403940886701"/>
         </scene>
         <!--ARViewController-->
         <scene sceneID="DbV-mU-nrS">

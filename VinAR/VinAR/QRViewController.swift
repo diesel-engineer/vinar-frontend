@@ -11,11 +11,18 @@ import SafariServices
 import AVFoundation
 
 class QRViewController: UIViewController {
+    @IBOutlet weak var fakePaymentButton: UIButton!
     
     var captureSession: AVCaptureSession!
     var previewLayer: AVCaptureVideoPreviewLayer!
     lazy var overlayView: QROverlayView = QROverlayView()
 
+    //fake payment here
+    @IBAction func onPaymentTouched(_ sender: UIButton) {
+        let paymentVC = CartViewController(nibName: "CartViewController", bundle: nil)
+        self.present(paymentVC, animated: true, completion: nil)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -62,6 +69,12 @@ class QRViewController: UIViewController {
         view.layer.addSublayer(previewLayer)
         
         captureSession.startRunning()
+        
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        self.view.bringSubviewToFront(fakePaymentButton)
     }
     
     func failed() {
