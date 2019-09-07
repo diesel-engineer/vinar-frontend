@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina6_1" orientation="portrait">
+    <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -15,12 +15,18 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="VinAR" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ipad_bgr" translatesAutoresizingMaskIntoConstraints="NO" id="T4N-TC-AJc">
+                                <rect key="frame" x="0.0" y="0.0" width="375.00000000000045" height="812"/>
+                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="omt-dp-bIg">
-                                <rect key="frame" x="145.5" y="438" width="123" height="30"/>
-                                <state key="normal" title="Open QR Scanner"/>
+                                <rect key="frame" x="137.66666666666666" y="678" width="100" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="RAg-6x-Xtv"/>
+                                    <constraint firstAttribute="height" constant="100" id="xlz-AF-j7K"/>
+                                </constraints>
                                 <connections>
                                     <action selector="openQRScanner:" destination="BYZ-38-t0r" eventType="touchUpInside" id="xv6-6n-Yom"/>
                                     <segue destination="x08-NS-Gqu" kind="show" id="QRp-NV-ChB"/>
@@ -29,22 +35,29 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="omt-dp-bIg" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="2yu-BT-MKG"/>
-                            <constraint firstItem="omt-dp-bIg" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="nHP-mZ-hTD"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="T4N-TC-AJc" secondAttribute="trailing" id="5BY-7E-4Ei"/>
+                            <constraint firstAttribute="bottom" secondItem="T4N-TC-AJc" secondAttribute="bottom" id="7LP-zK-pRs"/>
+                            <constraint firstItem="omt-dp-bIg" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="XWA-jt-qGb"/>
+                            <constraint firstItem="omt-dp-bIg" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="ZLa-B2-RGK"/>
+                            <constraint firstItem="T4N-TC-AJc" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="zUc-Cj-UVS"/>
+                            <constraint firstItem="T4N-TC-AJc" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="zwM-fA-ovd"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="imgBackground" destination="T4N-TC-AJc" id="4vD-g0-OFQ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="213" y="23"/>
+            <point key="canvasLocation" x="212" y="22.167487684729064"/>
         </scene>
         <!--QRViewController-->
         <scene sceneID="kWQ-rV-9Ho">
             <objects>
                 <viewController id="x08-NS-Gqu" userLabel="QRViewController" customClass="QRViewController" customModule="VinAR" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="tVn-jz-j1J">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="ZlB-P7-itg"/>
@@ -60,7 +73,7 @@
             <objects>
                 <viewController id="mAz-0A-3lx" userLabel="ARViewController" customClass="ARViewController" customModule="VinAR" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="iXS-QJ-qqC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="SN7-fi-qui"/>
@@ -71,4 +84,7 @@
             <point key="canvasLocation" x="1945" y="23"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="ipad_bgr" width="1668" height="2224"/>
+    </resources>
 </document>

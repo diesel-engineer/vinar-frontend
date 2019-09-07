@@ -9,10 +9,17 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    @IBOutlet weak var imgBackground: UIImageView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            imgBackground.image = UIImage(named: "ipad_bgr")
+        } else {
+            imgBackground.image = UIImage(named: "iphone_bgr")
+        }
+        
     }
 
     @IBAction func openQRScanner(_ sender: Any) {
