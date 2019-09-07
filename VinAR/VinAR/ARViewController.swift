@@ -72,8 +72,12 @@ extension ARViewController: WKScriptMessageHandler, WKNavigationDelegate {
                     present(sfSafariVC, animated: true)
                 }
             }
+            
+            if let param1 = param1, let param2 = param2, param1.contains("add_to_cart") {
+                let paymentVC = CartViewController(nibName: "CartViewController", bundle: nil)
+                self.present(paymentVC, animated: true, completion: nil)
+            }
         }
-        
     }
     
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
