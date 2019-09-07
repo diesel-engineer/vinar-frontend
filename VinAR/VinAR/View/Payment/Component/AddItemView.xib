@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AddItemView" customModule="VinIDDemo" customModuleProvider="target">
+            <connections>
+                <outlet property="contentView" destination="iN0-l3-epB" id="Rmb-zx-sqX"/>
+                <outlet property="txtNumber" destination="jO5-rB-fps" id="mfC-K7-fq0"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="111"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DWr-sL-hwh">
+                    <rect key="frame" x="0.0" y="0.0" width="138" height="111"/>
+                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="30"/>
+                    <state key="normal" title="-">
+                        <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                            <real key="value" value="1"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                            <color key="value" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="onDecreaseTouched:" destination="-1" eventType="touchUpInside" id="Qz7-TW-9cA"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LOs-IK-2qv">
+                    <rect key="frame" x="276" y="0.0" width="138" height="111"/>
+                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="30"/>
+                    <state key="normal" title="+">
+                        <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                            <color key="value" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                            <real key="value" value="1"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="onIncreaseTouched:" destination="-1" eventType="touchUpInside" id="TYd-5l-282"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jO5-rB-fps">
+                    <rect key="frame" x="200.5" y="48.5" width="13" height="24"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="LOs-IK-2qv" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="4WQ-r1-OOr"/>
+                <constraint firstItem="DWr-sL-hwh" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="B0a-jp-Ezs"/>
+                <constraint firstItem="LOs-IK-2qv" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="LSh-JP-CO6"/>
+                <constraint firstItem="DWr-sL-hwh" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="NLl-oD-70N"/>
+                <constraint firstItem="DWr-sL-hwh" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="1:3" id="dEQ-eQ-UDb"/>
+                <constraint firstItem="jO5-rB-fps" firstAttribute="centerY" secondItem="vUN-kp-3ea" secondAttribute="centerY" id="jMf-ck-o1N"/>
+                <constraint firstAttribute="bottom" secondItem="DWr-sL-hwh" secondAttribute="bottom" id="qEj-V5-ko4"/>
+                <constraint firstAttribute="bottom" secondItem="LOs-IK-2qv" secondAttribute="bottom" id="qvA-ZN-fSt"/>
+                <constraint firstItem="jO5-rB-fps" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="zT2-nf-DWo"/>
+                <constraint firstItem="DWr-sL-hwh" firstAttribute="width" secondItem="LOs-IK-2qv" secondAttribute="width" id="zth-MW-xkP"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                    <color key="value" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                </userDefinedRuntimeAttribute>
+                <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                    <real key="value" value="1"/>
+                </userDefinedRuntimeAttribute>
+            </userDefinedRuntimeAttributes>
+            <point key="canvasLocation" x="137.68115942028987" y="260.82589285714283"/>
+        </view>
+    </objects>
+</document>
