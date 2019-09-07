@@ -98,8 +98,10 @@ class ARViewController: UIViewController, WKUIDelegate, QLPreviewControllerDataS
             return
         }
         
+        let fileName = (itemURL.absoluteString as NSString).lastPathComponent
+        
         let docDir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-        let destDir = docDir.appendingPathComponent("ar.usdz")
+        let destDir = docDir.appendingPathComponent(fileName)
         
         if FileManager.default.fileExists(atPath: destDir.path) {
             completion(true, destDir)
