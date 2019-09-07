@@ -7,10 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1CE30240232355540051D831 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1CE50B832322AC6C007BA873 /* Assets.xcassets */; };
 		1CE50B7D2322AC6C007BA873 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE50B7C2322AC6C007BA873 /* AppDelegate.swift */; };
 		1CE50B7F2322AC6C007BA873 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE50B7E2322AC6C007BA873 /* ViewController.swift */; };
 		1CE50B822322AC6C007BA873 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1CE50B802322AC6C007BA873 /* Main.storyboard */; };
-		1CE50B842322AC6C007BA873 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1CE50B832322AC6C007BA873 /* Assets.xcassets */; };
 		1CE50B872322AC6C007BA873 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1CE50B852322AC6C007BA873 /* LaunchScreen.storyboard */; };
 		1CE50B8F2322AD38007BA873 /* QRViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE50B8E2322AD38007BA873 /* QRViewController.swift */; };
 		1CE50B9D2322C3FC007BA873 /* ARViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE50B9C2322C3FC007BA873 /* ARViewController.swift */; };
@@ -219,9 +219,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1CE30240232355540051D831 /* Assets.xcassets in Resources */,
 				22C56E2A232345230080E5A8 /* CartTableViewCell.xib in Resources */,
 				1CE50B872322AC6C007BA873 /* LaunchScreen.storyboard in Resources */,
-				1CE50B842322AC6C007BA873 /* Assets.xcassets in Resources */,
 				1CE50B822322AC6C007BA873 /* Main.storyboard in Resources */,
 				22C56E2D232345230080E5A8 /* PaymentSuccessViewController.xib in Resources */,
 				22C56E3323234A9B0080E5A8 /* product.json in Resources */,
@@ -436,7 +436,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = EA55T84SX3;
+				DEVELOPMENT_TEAM = R37BQGXFF7;
 				INFOPLIST_FILE = VinAR/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -455,7 +455,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = EA55T84SX3;
+				DEVELOPMENT_TEAM = R37BQGXFF7;
 				INFOPLIST_FILE = VinAR/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

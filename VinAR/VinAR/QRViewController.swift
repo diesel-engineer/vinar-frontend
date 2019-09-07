@@ -9,27 +9,18 @@
 import UIKit
 import SafariServices
 import AVFoundation
+import RxSwift
+import RxCocoa
 
 class QRViewController: UIViewController {
-    @IBOutlet weak var fakePaymentButton: UIButton!
-    
     var captureSession: AVCaptureSession!
     var previewLayer: AVCaptureVideoPreviewLayer!
     lazy var overlayView: QROverlayView = QROverlayView()
-
-    //fake payment here
-    @IBAction func onPaymentTouched(_ sender: UIButton) {
-        let paymentVC = CartViewController(nibName: "CartViewController", bundle: nil)
-        self.present(paymentVC, animated: true, completion: nil)
-    }
+    
+    let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        view.addSubview(overlayView)
-        overlayView.snp.makeConstraints { $0.edges.equalToSuperview() }
-        overlayView.alpha = 0
-        UIView.animate(withDuration: 0.2, animations: { self.overlayView.alpha = 1 })
 
         // QR Scanner
         view.backgroundColor = UIColor.black
@@ -70,11 +61,11 @@ class QRViewController: UIViewController {
         
         captureSession.startRunning()
         
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        self.view.bringSubviewToFront(fakePaymentButton)
+        view.addSubview(overlayView)
+        overlayView.snp.makeConstraints { $0.edges.equalToSuperview() }
+        overlayView.alpha = 0
+        UIView.animate(withDuration: 0.2, animations: { self.overlayView.alpha = 1 })
+        
     }
     
     func failed() {
@@ -90,6 +81,8 @@ class QRViewController: UIViewController {
         if (captureSession?.isRunning == false) {
             captureSession.startRunning()
         }
+        
+        setupFlash()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -107,21 +100,6 @@ class QRViewController: UIViewController {
             let arWebVC = ARViewController()
             arWebVC.urlString = urlString
             present(arWebVC, animated: true)
-
-//            if let url = URL(string: urlString) {
-//                let sfConfiguration = SFSafariViewController.Configuration()
-//                sfConfiguration.barCollapsingEnabled = true
-//                sfConfiguration.entersReaderIfAvailable = false
-//                let arWebVC = ARViewController(url: url, configuration: sfConfiguration)
-//                
-//                arWebVC.delegate = self
-//                present(arWebVC, animated: true)
-            
-                //
-                //                arWebVC.delegate = self
-                //                present(arWebVC, animated: true)
-//            }
-        //}
     }
     
     override var prefersStatusBarHidden: Bool {
@@ -149,4 +127,51 @@ extension QRViewController: AVCaptureMetadataOutputObjectsDelegate {
             found(code: stringValue)
         }
     }
+}
+
+private extension QRViewController {
+    func setupFlash() {
+        guard let device = AVCaptureDevice.default(for: .video) else { return }
+        overlayView.flashButton.isHidden = !device.hasTorch
+        
+        overlayView.flashButton.rx.tap.asObservable()
+            .subscribe(onNext: { [unowned self] _ in
+                self.toggleTorch()
+                }, onError: nil, onCompleted: nil, onDisposed: nil)
+            .disposed(by: disposeBag)
+        
+        overlayView.flashButton.rx.tap.asObservable()
+            .flatMap { event in
+                Observable.just(event).delaySubscription(0.1, scheduler: MainScheduler.instance)
+            }
+            .subscribe(onNext: { [unowned self] _ in
+                self.refreshSession()
+                }, onError: nil, onCompleted: nil, onDisposed: nil)
+            .disposed(by: disposeBag)
+    }
+    
+    func refreshSession() {
+        guard let device = AVCaptureDevice.default(for: .video) else { return }
+        let icon = device.isTorchActive ? UIImage(named: "ic-scanner-flash-on") : UIImage(named: "ic-scanner-flash-off")
+        overlayView.flashButton.setImage(icon, for: .normal)
+    }
+    
+    func toggleTorch() {
+        guard let device = AVCaptureDevice.default(for: .video) else { return }
+        guard device.hasTorch else { return }
+        do {
+            try device.lockForConfiguration()
+            switch device.torchMode {
+            case .on:
+                device.torchMode = .off
+            case .off:
+                device.torchMode = .on
+            default:
+                break
+            }
+            device.unlockForConfiguration()
+        } catch {
+        }
+    }
+    
 }

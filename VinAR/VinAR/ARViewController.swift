@@ -42,6 +42,11 @@ class ARViewController: UIViewController, WKUIDelegate {
         closeButton.setTitle("Back", for: .normal)
         closeButton.setTitleColor(.blue, for: .normal)
         view.addSubview(closeButton)
+        closeButton.addTarget(self, action: #selector(onBackTap(_:)), for: .touchUpInside)
+    }
+    
+    @IBAction func onBackTap(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
     }
 }
 

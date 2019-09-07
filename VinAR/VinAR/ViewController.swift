@@ -13,13 +13,6 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        if UIDevice.current.userInterfaceIdiom == .pad {
-            imgBackground.image = UIImage(named: "ipad_bgr")
-        } else {
-            imgBackground.image = UIImage(named: "iphone_bgr")
-        }
-        
     }
 
     @IBAction func openQRScanner(_ sender: Any) {

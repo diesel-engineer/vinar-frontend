@@ -5,4 +5,6 @@ target 'VinAR' do
   use_frameworks!
   # Pods for PathVisualiser
   pod 'SnapKit'
+  pod 'RxSwift', '4.5.0'
+  pod 'RxCocoa', '4.5.0'
 end
