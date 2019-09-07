@@ -13,6 +13,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CartViewController" customModule="VinAR" customModuleProvider="target">
             <connections>
                 <outlet property="feeShip" destination="xYa-YV-ST3" id="Wbw-7O-NyM"/>
+                <outlet property="indicatorView" destination="tKH-lW-c7f" id="W8O-7Z-J4Y"/>
                 <outlet property="itemTableView" destination="zSV-HF-Z9E" id="FeE-KQ-5kb"/>
                 <outlet property="sumItem" destination="Byg-4c-T0r" id="MnT-HB-EPY"/>
                 <outlet property="sumTotal" destination="ljG-PO-QMz" id="Wo0-VA-XW6"/>
@@ -64,6 +65,14 @@
                         <outlet property="delegate" destination="-1" id="5sI-6X-Hww"/>
                     </connections>
                 </tableView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tKH-lW-c7f" customClass="NVActivityIndicatorView" customModule="NVActivityIndicatorView">
+                    <rect key="frame" x="167" y="313" width="80" height="80"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="80" id="Zf1-GS-Dec"/>
+                        <constraint firstAttribute="width" secondItem="tKH-lW-c7f" secondAttribute="height" multiplier="1:1" id="lMd-O2-W2X"/>
+                    </constraints>
+                </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r9n-1q-izt">
                     <rect key="frame" x="0.0" y="626" width="414" height="270"/>
                     <subviews>
@@ -187,11 +196,13 @@
                 <constraint firstItem="r9n-1q-izt" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="3mx-xk-EWH"/>
                 <constraint firstItem="r9n-1q-izt" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="7A3-RN-tad"/>
                 <constraint firstItem="zSV-HF-Z9E" firstAttribute="top" secondItem="eTu-HW-Q1o" secondAttribute="bottom" constant="5" id="9JB-pY-l4a"/>
+                <constraint firstItem="tKH-lW-c7f" firstAttribute="centerY" secondItem="zSV-HF-Z9E" secondAttribute="centerY" id="CB8-UX-2HP"/>
                 <constraint firstItem="eTu-HW-Q1o" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Cbw-Sh-tQ7"/>
                 <constraint firstItem="zSV-HF-Z9E" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Vx5-kC-Mkd"/>
                 <constraint firstItem="zSV-HF-Z9E" firstAttribute="width" secondItem="r9n-1q-izt" secondAttribute="height" multiplier="2:1" priority="750" id="XSY-sk-DIc"/>
                 <constraint firstAttribute="bottom" secondItem="r9n-1q-izt" secondAttribute="bottom" id="j1I-Z5-Ntf"/>
                 <constraint firstItem="eTu-HW-Q1o" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="jqu-NF-r3d"/>
+                <constraint firstItem="tKH-lW-c7f" firstAttribute="centerX" secondItem="zSV-HF-Z9E" secondAttribute="centerX" id="nps-vN-fkj"/>
                 <constraint firstItem="zSV-HF-Z9E" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="rwu-9q-SeH"/>
                 <constraint firstItem="r9n-1q-izt" firstAttribute="top" secondItem="zSV-HF-Z9E" secondAttribute="bottom" constant="5" id="vge-Ck-pGM"/>
                 <constraint firstItem="eTu-HW-Q1o" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="x8Y-b0-Zf5"/>

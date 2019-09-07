@@ -5,4 +5,5 @@ target 'VinAR' do
   use_frameworks!
   # Pods for PathVisualiser
   pod 'SnapKit'
+  pod 'NVActivityIndicatorView'
 end

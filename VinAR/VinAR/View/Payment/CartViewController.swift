@@ -7,12 +7,14 @@
 //
 
 import UIKit
+import NVActivityIndicatorView
 
 class CartViewController: UIViewController {
     @IBOutlet weak var itemTableView: UITableView!
     @IBOutlet weak var sumItem: UILabel!
     @IBOutlet weak var feeShip: UILabel!
     @IBOutlet weak var sumTotal: UILabel!
+    @IBOutlet weak var indicatorView: NVActivityIndicatorView!
     var productList : ProductListVO?
     
     override func viewDidLoad() {
@@ -62,6 +64,8 @@ class CartViewController: UIViewController {
     
     private func setupUI() {
         itemTableView.register(UINib(nibName: "CartTableViewCell", bundle: nil), forCellReuseIdentifier: "CartTableViewCell")
+        indicatorView.type = .ballGridPulse
+        indicatorView.color = UIColor(rgb: 0xA00B0D)
     }
 
     @IBAction func onPaymentTouched(_ sender: Any) {
@@ -69,6 +73,8 @@ class CartViewController: UIViewController {
         if productList != nil && productList!.list.count > 0 {
             //Open success payment screen
             let paySuccessVC = PaymentSuccessViewController(nibName: "PaymentSuccessViewController", bundle: nil)
+            paySuccessVC.modalPresentationStyle = .overCurrentContext
+            paySuccessVC.modalTransitionStyle = .crossDissolve
             self.present(paySuccessVC, animated: true, completion: nil)
         }
     }
@@ -104,9 +110,14 @@ extension CartViewController: UITableViewDataSource, UITableViewDelegate {
         
         cell.closeTouched = {[unowned self]  in
          //delete cell
-            self.productList!.list.remove(at: indexPath.row)
-            self.updateSum()
-            self.itemTableView.reloadData()
+            self.indicatorView.startAnimating()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                self.indicatorView.stopAnimating()
+                self.productList!.list.remove(at: indexPath.row)
+                self.updateSum()
+                self.itemTableView.reloadData()
+            }
+            
         }
         return cell
     }
