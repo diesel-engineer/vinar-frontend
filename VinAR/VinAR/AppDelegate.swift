@@ -41,37 +41,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-    
-    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
-        if var topController = UIApplication.shared.keyWindow?.rootViewController {
-            while let presentedViewController = topController.presentedViewController {
-                topController = presentedViewController
-            }
-            
-            let urlString = url.absoluteString
-            
-            let viewARPrefix = "view_ar://"
-            let addToCartPrefix = "add_to_card://"
-            
-            if urlString.hasPrefix(viewARPrefix) {
-                let arURL = urlString.dropFirst(viewARPrefix.count)
-                
-                // Open Safari
-                let sfConfig = SFSafariViewController.Configuration()
-                sfConfig.barCollapsingEnabled = true
-                sfConfig.entersReaderIfAvailable = false
-                let safariVC = SFSafariViewController(url: URL(string: String(arURL))!, configuration: sfConfig)
-                topController.present(safariVC, animated: true, completion: nil)
-                return true
-            }
-            
-            if urlString.hasPrefix(addToCartPrefix) {
-                // Open payment
-                return true
-            }
-        }
-        
-        return false
-    }
 }
 

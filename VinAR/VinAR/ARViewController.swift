@@ -33,7 +33,9 @@ class ARViewController: UIViewController, WKUIDelegate {
         view.addSubview(webView)
         
         if let urlString = self.urlString {
-            let myURL = URL(string: urlString)
+//            let myURL = URL(string: urlString)
+            let myURL = Bundle.main.url(forResource: "page", withExtension: "html")
+
             let myRequest = URLRequest(url: myURL!)
             webView.load(myRequest)
         }
@@ -55,17 +57,23 @@ extension ARViewController: WKScriptMessageHandler, WKNavigationDelegate {
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
         //This function handles the events coming from javascript. We'll configure the javascript side of this later.
         //We can access properties through the message body, like this:
-        guard let response = message.body as? String else { return }
         
-        if response.contains("vinar") {
-            let sfConfiguration = SFSafariViewController.Configuration()
-            sfConfiguration.barCollapsingEnabled = true
-            sfConfiguration.entersReaderIfAvailable = false
-            if let url = URL(string: response) {
-                let sfSafariVC = SFSafariViewController(url: url, configuration: sfConfiguration)
-                present(sfSafariVC, animated: true)
+        if message.name == "callback" {
+            guard let response = message.body as? [String: AnyObject] else { return }
+            let param1 = response["param1"] as? String
+            let param2 = response["param2"] as? String
+            
+            if let param1 = param1, let param2 = param2, param1.contains("view_ar") {
+                let sfConfiguration = SFSafariViewController.Configuration()
+                sfConfiguration.barCollapsingEnabled = true
+                sfConfiguration.entersReaderIfAvailable = false
+                if let url = URL(string: param2) {
+                    let sfSafariVC = SFSafariViewController(url: url, configuration: sfConfiguration)
+                    present(sfSafariVC, animated: true)
+                }
             }
         }
+        
     }
     
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {

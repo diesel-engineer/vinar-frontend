@@ -1,0 +1,30 @@
+
+<html>
+<script>
+function openARModel(url) {
+    //This function will send the name to native.
+    //We can add an EventListener to an object on the page to call this function when it is clicked.
+    try {
+        webkit.messageHandlers.callback.postMessage({ param1: "view_ar", param2: url});
+    } catch(err) {
+        console.log('Can not reach native code');
+    }
+}
+
+function addToCart(id) {
+    //This function will send the name to native.
+    //We can add an EventListener to an object on the page to call this function when it is clicked.
+    try {
+        webkit.messageHandlers.callback.postMessage({ param1: "add_to_cart", param2: id});
+    } catch(err) {
+        console.log('Can not reach native code');
+    }
+}
+</script>
+<body>
+    <a href="javascript:openARModel('https://developer.apple.com/augmented-reality/quick-look/models/biplane/toy_biplane.usdz');">Model</a>
+    <br/>
+    <br/>
+    <a href="javascript:addToCart('0');">Add to Cart</a>
+</body>
+</html>

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1C5895CE23236450007EAE2A /* page.html in Resources */ = {isa = PBXBuildFile; fileRef = 1C5895CD23236450007EAE2A /* page.html */; };
 		1CE30240232355540051D831 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1CE50B832322AC6C007BA873 /* Assets.xcassets */; };
 		1CE50B7D2322AC6C007BA873 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE50B7C2322AC6C007BA873 /* AppDelegate.swift */; };
 		1CE50B7F2322AC6C007BA873 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE50B7E2322AC6C007BA873 /* ViewController.swift */; };
@@ -29,6 +30,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1C5895CD23236450007EAE2A /* page.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = page.html; sourceTree = "<group>"; };
 		1CE50B792322AC6C007BA873 /* VinAR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VinAR.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1CE50B7C2322AC6C007BA873 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1CE50B7E2322AC6C007BA873 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -97,6 +99,7 @@
 				1CE50B8E2322AD38007BA873 /* QRViewController.swift */,
 				1CE50B9C2322C3FC007BA873 /* ARViewController.swift */,
 				1CE50B9E232323A6007BA873 /* QROverlayView.swift */,
+				1C5895CD23236450007EAE2A /* page.html */,
 			);
 			path = VinAR;
 			sourceTree = "<group>";
@@ -224,6 +227,7 @@
 				1CE50B872322AC6C007BA873 /* LaunchScreen.storyboard in Resources */,
 				1CE50B822322AC6C007BA873 /* Main.storyboard in Resources */,
 				22C56E2D232345230080E5A8 /* PaymentSuccessViewController.xib in Resources */,
+				1C5895CE23236450007EAE2A /* page.html in Resources */,
 				22C56E3323234A9B0080E5A8 /* product.json in Resources */,
 				22C56E2E232345230080E5A8 /* CartViewController.xib in Resources */,
 				22C56E28232345230080E5A8 /* AddItemView.xib in Resources */,
@@ -434,7 +438,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 98C61D5BE53D09FAB7906DA9 /* Pods-VinAR.debug.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-1";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = R37BQGXFF7;
 				INFOPLIST_FILE = VinAR/Info.plist;
@@ -453,7 +457,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 22CB7D8C1A4DD71DFEA9A184 /* Pods-VinAR.release.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-1";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = R37BQGXFF7;
 				INFOPLIST_FILE = VinAR/Info.plist;
